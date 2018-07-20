@@ -4,7 +4,7 @@ from django.db import models
 class OrgInfo(models.Model):
     orgId=models.IntegerField(auto_created=True)
     orgName=models.CharField(max_length=20)
-    orgParent_id=models.IntegerField()
+    orgParentId=models.IntegerField()
     def __str__(self):
         return self.orgName
 
@@ -22,10 +22,10 @@ class UserInfo(models.Model):
 
 class ProjectInfo(models.Model):
     id = models.IntegerField(auto_created=True, primary_key=True)
-    pro_name=models.CharField(max_length=50)
-    pro_des=models.CharField(max_length=200)
+    proName=models.CharField(max_length=50)
+    proDesc=models.CharField(max_length=200)
     def __str__(self):
-        return self.pro_name
+        return self.proName
 
 
 class resultInfo(models.Model):
@@ -45,7 +45,7 @@ class resultMapInfo(models.Model):
     orgId = models.ForeignKey(OrgInfo, on_delete=models.CASCADE)
     proId = models.ForeignKey(ProjectInfo, on_delete=models.CASCADE)
     userId = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    ressultId=models.ForeignKey(resultInfo, on_delete=models.CASCADE)
+    resultId=models.ForeignKey(resultInfo, on_delete=models.CASCADE)
     def __str__(self):
-        return self.id
+        return str(self.id)
 
