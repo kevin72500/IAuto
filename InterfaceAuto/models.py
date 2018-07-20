@@ -15,10 +15,9 @@ class UserInfo(models.Model):
     passwd=models.CharField(max_length=8)
     email=models.CharField(max_length=50)
     regDate=models.DateField()
-    orgId=models.ForeignKey(OrgInfo,on_delete=models.CASCADE)
-
     def __str__(self):
         return self.name
+
 
 class ProjectInfo(models.Model):
     id = models.IntegerField(auto_created=True, primary_key=True)
@@ -46,6 +45,14 @@ class resultMapInfo(models.Model):
     proId = models.ForeignKey(ProjectInfo, on_delete=models.CASCADE)
     userId = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     resultId=models.ForeignKey(resultInfo, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.id)
+
+
+class UserOrgMapInfo(models.Model):
+    id=models.IntegerField(auto_created=True, primary_key=True)
+    userId=models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    orgId=models.ForeignKey(OrgInfo, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.id)
 
